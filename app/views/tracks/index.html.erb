@@ -1,0 +1,41 @@
+<h1>Listing tracks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Album</th>
+      <th>Media type</th>
+      <th>Genre</th>
+      <th>Composer</th>
+      <th>Milliseconds</th>
+      <th>Bytes</th>
+      <th>Unit price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tracks.each do |track| %>
+      <tr>
+        <td><%= track.name %></td>
+        <td><%= track.album_id %></td>
+        <td><%= track.media_type_id %></td>
+        <td><%= track.genre_id %></td>
+        <td><%= track.composer %></td>
+        <td><%= track.milliseconds %></td>
+        <td><%= track.bytes %></td>
+        <td><%= track.unit_price %></td>
+        <td><%= link_to 'Show', track %></td>
+        <td><%= link_to 'Edit', edit_track_path(track) %></td>
+        <td><%= link_to 'Destroy', track, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Track', new_track_path %>

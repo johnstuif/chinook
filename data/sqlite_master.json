@@ -1,0 +1,235 @@
+{
+"RECORDS":[
+{
+"type":"table",
+"name":"Album",
+"tbl_name":"Album",
+"rootpage":"2",
+"sql":"CREATE TABLE [Album]\n(\n    [AlbumId] INTEGER  NOT NULL,\n    [Title] NVARCHAR(160)  NOT NULL,\n    [ArtistId] INTEGER  NOT NULL,\n    CONSTRAINT [PK_Album] PRIMARY KEY  ([AlbumId]),\n    FOREIGN KEY ([ArtistId]) REFERENCES [Artist] ([ArtistId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION\n)"
+},
+{
+"type":"table",
+"name":"Artist",
+"tbl_name":"Artist",
+"rootpage":"3",
+"sql":"CREATE TABLE [Artist]\n(\n    [ArtistId] INTEGER  NOT NULL,\n    [Name] NVARCHAR(120),\n    CONSTRAINT [PK_Artist] PRIMARY KEY  ([ArtistId])\n)"
+},
+{
+"type":"table",
+"name":"Customer",
+"tbl_name":"Customer",
+"rootpage":"4",
+"sql":"CREATE TABLE [Customer]\n(\n    [CustomerId] INTEGER  NOT NULL,\n    [FirstName] NVARCHAR(40)  NOT NULL,\n    [LastName] NVARCHAR(20)  NOT NULL,\n    [Company] NVARCHAR(80),\n    [Address] NVARCHAR(70),\n    [City] NVARCHAR(40),\n    [State] NVARCHAR(40),\n    [Country] NVARCHAR(40),\n    [PostalCode] NVARCHAR(10),\n    [Phone] NVARCHAR(24),\n    [Fax] NVARCHAR(24),\n    [Email] NVARCHAR(60)  NOT NULL,\n    [SupportRepId] INTEGER,\n    CONSTRAINT [PK_Customer] PRIMARY KEY  ([CustomerId]),\n    FOREIGN KEY ([SupportRepId]) REFERENCES [Employee] ([EmployeeId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION\n)"
+},
+{
+"type":"table",
+"name":"Employee",
+"tbl_name":"Employee",
+"rootpage":"7",
+"sql":"CREATE TABLE [Employee]\n(\n    [EmployeeId] INTEGER  NOT NULL,\n    [LastName] NVARCHAR(20)  NOT NULL,\n    [FirstName] NVARCHAR(20)  NOT NULL,\n    [Title] NVARCHAR(30),\n    [ReportsTo] INTEGER,\n    [BirthDate] DATETIME,\n    [HireDate] DATETIME,\n    [Address] NVARCHAR(70),\n    [City] NVARCHAR(40),\n    [State] NVARCHAR(40),\n    [Country] NVARCHAR(40),\n    [PostalCode] NVARCHAR(10),\n    [Phone] NVARCHAR(24),\n    [Fax] NVARCHAR(24),\n    [Email] NVARCHAR(60),\n    CONSTRAINT [PK_Employee] PRIMARY KEY  ([EmployeeId]),\n    FOREIGN KEY ([ReportsTo]) REFERENCES [Employee] ([EmployeeId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION\n)"
+},
+{
+"type":"table",
+"name":"Genre",
+"tbl_name":"Genre",
+"rootpage":"9",
+"sql":"CREATE TABLE [Genre]\n(\n    [GenreId] INTEGER  NOT NULL,\n    [Name] NVARCHAR(120),\n    CONSTRAINT [PK_Genre] PRIMARY KEY  ([GenreId])\n)"
+},
+{
+"type":"table",
+"name":"Invoice",
+"tbl_name":"Invoice",
+"rootpage":"10",
+"sql":"CREATE TABLE [Invoice]\n(\n    [InvoiceId] INTEGER  NOT NULL,\n    [CustomerId] INTEGER  NOT NULL,\n    [InvoiceDate] DATETIME  NOT NULL,\n    [BillingAddress] NVARCHAR(70),\n    [BillingCity] NVARCHAR(40),\n    [BillingState] NVARCHAR(40),\n    [BillingCountry] NVARCHAR(40),\n    [BillingPostalCode] NVARCHAR(10),\n    [Total] NUMERIC(10,2)  NOT NULL,\n    CONSTRAINT [PK_Invoice] PRIMARY KEY  ([InvoiceId]),\n    FOREIGN KEY ([CustomerId]) REFERENCES [Customer] ([CustomerId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION\n)"
+},
+{
+"type":"table",
+"name":"InvoiceLine",
+"tbl_name":"InvoiceLine",
+"rootpage":"12",
+"sql":"CREATE TABLE [InvoiceLine]\n(\n    [InvoiceLineId] INTEGER  NOT NULL,\n    [InvoiceId] INTEGER  NOT NULL,\n    [TrackId] INTEGER  NOT NULL,\n    [UnitPrice] NUMERIC(10,2)  NOT NULL,\n    [Quantity] INTEGER  NOT NULL,\n    CONSTRAINT [PK_InvoiceLine] PRIMARY KEY  ([InvoiceLineId]),\n    FOREIGN KEY ([InvoiceId]) REFERENCES [Invoice] ([InvoiceId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION,\n    FOREIGN KEY ([TrackId]) REFERENCES [Track] ([TrackId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION\n)"
+},
+{
+"type":"table",
+"name":"MediaType",
+"tbl_name":"MediaType",
+"rootpage":"14",
+"sql":"CREATE TABLE [MediaType]\n(\n    [MediaTypeId] INTEGER  NOT NULL,\n    [Name] NVARCHAR(120),\n    CONSTRAINT [PK_MediaType] PRIMARY KEY  ([MediaTypeId])\n)"
+},
+{
+"type":"table",
+"name":"Playlist",
+"tbl_name":"Playlist",
+"rootpage":"15",
+"sql":"CREATE TABLE [Playlist]\n(\n    [PlaylistId] INTEGER  NOT NULL,\n    [Name] NVARCHAR(120),\n    CONSTRAINT [PK_Playlist] PRIMARY KEY  ([PlaylistId])\n)"
+},
+{
+"type":"table",
+"name":"PlaylistTrack",
+"tbl_name":"PlaylistTrack",
+"rootpage":"16",
+"sql":"CREATE TABLE [PlaylistTrack]\n(\n    [PlaylistId] INTEGER  NOT NULL,\n    [TrackId] INTEGER  NOT NULL,\n    CONSTRAINT [PK_PlaylistTrack] PRIMARY KEY  ([PlaylistId], [TrackId]),\n    FOREIGN KEY ([PlaylistId]) REFERENCES [Playlist] ([PlaylistId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION,\n    FOREIGN KEY ([TrackId]) REFERENCES [Track] ([TrackId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION\n)"
+},
+{
+"type":"index",
+"name":"sqlite_autoindex_PlaylistTrack_1",
+"tbl_name":"PlaylistTrack",
+"rootpage":"17",
+"sql":""
+},
+{
+"type":"table",
+"name":"Track",
+"tbl_name":"Track",
+"rootpage":"19",
+"sql":"CREATE TABLE [Track]\n(\n    [TrackId] INTEGER  NOT NULL,\n    [Name] NVARCHAR(200)  NOT NULL,\n    [AlbumId] INTEGER,\n    [MediaTypeId] INTEGER  NOT NULL,\n    [GenreId] INTEGER,\n    [Composer] NVARCHAR(220),\n    [Milliseconds] INTEGER  NOT NULL,\n    [Bytes] INTEGER,\n    [UnitPrice] NUMERIC(10,2)  NOT NULL,\n    CONSTRAINT [PK_Track] PRIMARY KEY  ([TrackId]),\n    FOREIGN KEY ([AlbumId]) REFERENCES [Album] ([AlbumId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION,\n    FOREIGN KEY ([GenreId]) REFERENCES [Genre] ([GenreId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION,\n    FOREIGN KEY ([MediaTypeId]) REFERENCES [MediaType] ([MediaTypeId]) \n\t\tON DELETE NO ACTION ON UPDATE NO ACTION\n)"
+},
+{
+"type":"index",
+"name":"IPK_Album",
+"tbl_name":"Album",
+"rootpage":"21",
+"sql":"CREATE UNIQUE INDEX [IPK_Album] ON [Album]([AlbumId])"
+},
+{
+"type":"index",
+"name":"IPK_Artist",
+"tbl_name":"Artist",
+"rootpage":"22",
+"sql":"CREATE UNIQUE INDEX [IPK_Artist] ON [Artist]([ArtistId])"
+},
+{
+"type":"index",
+"name":"IPK_Customer",
+"tbl_name":"Customer",
+"rootpage":"23",
+"sql":"CREATE UNIQUE INDEX [IPK_Customer] ON [Customer]([CustomerId])"
+},
+{
+"type":"index",
+"name":"IPK_Employee",
+"tbl_name":"Employee",
+"rootpage":"24",
+"sql":"CREATE UNIQUE INDEX [IPK_Employee] ON [Employee]([EmployeeId])"
+},
+{
+"type":"index",
+"name":"IPK_Genre",
+"tbl_name":"Genre",
+"rootpage":"26",
+"sql":"CREATE UNIQUE INDEX [IPK_Genre] ON [Genre]([GenreId])"
+},
+{
+"type":"index",
+"name":"IPK_Invoice",
+"tbl_name":"Invoice",
+"rootpage":"27",
+"sql":"CREATE UNIQUE INDEX [IPK_Invoice] ON [Invoice]([InvoiceId])"
+},
+{
+"type":"index",
+"name":"IPK_InvoiceLine",
+"tbl_name":"InvoiceLine",
+"rootpage":"28",
+"sql":"CREATE UNIQUE INDEX [IPK_InvoiceLine] ON [InvoiceLine]([InvoiceLineId])"
+},
+{
+"type":"index",
+"name":"IPK_MediaType",
+"tbl_name":"MediaType",
+"rootpage":"29",
+"sql":"CREATE UNIQUE INDEX [IPK_MediaType] ON [MediaType]([MediaTypeId])"
+},
+{
+"type":"index",
+"name":"IPK_Playlist",
+"tbl_name":"Playlist",
+"rootpage":"30",
+"sql":"CREATE UNIQUE INDEX [IPK_Playlist] ON [Playlist]([PlaylistId])"
+},
+{
+"type":"index",
+"name":"IPK_PlaylistTrack",
+"tbl_name":"PlaylistTrack",
+"rootpage":"31",
+"sql":"CREATE UNIQUE INDEX [IPK_PlaylistTrack] ON [PlaylistTrack]([PlaylistId], [TrackId])"
+},
+{
+"type":"index",
+"name":"IPK_Track",
+"tbl_name":"Track",
+"rootpage":"32",
+"sql":"CREATE UNIQUE INDEX [IPK_Track] ON [Track]([TrackId])"
+},
+{
+"type":"index",
+"name":"IFK_AlbumArtistId",
+"tbl_name":"Album",
+"rootpage":"33",
+"sql":"CREATE INDEX [IFK_AlbumArtistId] ON [Album] ([ArtistId])"
+},
+{
+"type":"index",
+"name":"IFK_CustomerSupportRepId",
+"tbl_name":"Customer",
+"rootpage":"34",
+"sql":"CREATE INDEX [IFK_CustomerSupportRepId] ON [Customer] ([SupportRepId])"
+},
+{
+"type":"index",
+"name":"IFK_EmployeeReportsTo",
+"tbl_name":"Employee",
+"rootpage":"36",
+"sql":"CREATE INDEX [IFK_EmployeeReportsTo] ON [Employee] ([ReportsTo])"
+},
+{
+"type":"index",
+"name":"IFK_InvoiceCustomerId",
+"tbl_name":"Invoice",
+"rootpage":"37",
+"sql":"CREATE INDEX [IFK_InvoiceCustomerId] ON [Invoice] ([CustomerId])"
+},
+{
+"type":"index",
+"name":"IFK_InvoiceLineInvoiceId",
+"tbl_name":"InvoiceLine",
+"rootpage":"38",
+"sql":"CREATE INDEX [IFK_InvoiceLineInvoiceId] ON [InvoiceLine] ([InvoiceId])"
+},
+{
+"type":"index",
+"name":"IFK_InvoiceLineTrackId",
+"tbl_name":"InvoiceLine",
+"rootpage":"39",
+"sql":"CREATE INDEX [IFK_InvoiceLineTrackId] ON [InvoiceLine] ([TrackId])"
+},
+{
+"type":"index",
+"name":"IFK_PlaylistTrackTrackId",
+"tbl_name":"PlaylistTrack",
+"rootpage":"40",
+"sql":"CREATE INDEX [IFK_PlaylistTrackTrackId] ON [PlaylistTrack] ([TrackId])"
+},
+{
+"type":"index",
+"name":"IFK_TrackAlbumId",
+"tbl_name":"Track",
+"rootpage":"41",
+"sql":"CREATE INDEX [IFK_TrackAlbumId] ON [Track] ([AlbumId])"
+},
+{
+"type":"index",
+"name":"IFK_TrackGenreId",
+"tbl_name":"Track",
+"rootpage":"42",
+"sql":"CREATE INDEX [IFK_TrackGenreId] ON [Track] ([GenreId])"
+},
+{
+"type":"index",
+"name":"IFK_TrackMediaTypeId",
+"tbl_name":"Track",
+"rootpage":"43",
+"sql":"CREATE INDEX [IFK_TrackMediaTypeId] ON [Track] ([MediaTypeId])"
+}
+]
+}

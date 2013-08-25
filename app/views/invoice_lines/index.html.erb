@@ -1,0 +1,33 @@
+<h1>Listing invoice_lines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Invoice</th>
+      <th>Track</th>
+      <th>Unit price</th>
+      <th>Quantity</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoice_lines.each do |invoice_line| %>
+      <tr>
+        <td><%= invoice_line.invoice_id %></td>
+        <td><%= invoice_line.track_id %></td>
+        <td><%= invoice_line.unit_price %></td>
+        <td><%= invoice_line.quantity %></td>
+        <td><%= link_to 'Show', invoice_line %></td>
+        <td><%= link_to 'Edit', edit_invoice_line_path(invoice_line) %></td>
+        <td><%= link_to 'Destroy', invoice_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Invoice line', new_invoice_line_path %>
