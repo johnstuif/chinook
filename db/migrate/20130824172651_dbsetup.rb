@@ -72,7 +72,6 @@ class Dbsetup < ActiveRecord::Migration
     end
 
     create_table :media_types do |t|
-      t.integer   :invoice_id
       t.string    :name
       t.timestamps
     end
