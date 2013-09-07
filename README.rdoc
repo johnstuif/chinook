@@ -2,8 +2,9 @@
 
 I've created this Rails 4 (Ruby 2.0.0p247) app using the Chinook database (chinookdatabase.codeplex.com). 
 
-The migration and seed file will get you up and running.
+The migration and seed files will get you up and running.
 
+== PURPOSE
 The main goal of this project is to use it as a jumping off point to learn front-end frameworks, i.e. Knockout and Angular and become more famailiar with Rails overall.
 
 All the MVC code was generated from scaffolds.
