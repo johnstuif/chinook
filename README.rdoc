@@ -1,28 +1,14 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I've created this Rails 4 (Ruby 2.0.0p247) app using the Chinook database (chinookdatabase.codeplex.com). 
 
-Things you may want to cover:
+The migration and seed file will get you up and running.
 
-* Ruby version
+The main goal of this project is to use it as a jumping off point to learn front-end frameworks, i.e. Knockout and Angular and become more famailiar with Rails overall.
 
-* System dependencies
+All the MVC code was generated from scaffolds.
 
-* Configuration
+== TODOs
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Add data entry validations
+* Create tests

@@ -91,7 +91,6 @@ ActiveRecord::Schema.define(version: 20130824172651) do
   end
 
   create_table "media_types", force: true do |t|
-    t.integer  "invoice_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
