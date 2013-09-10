@@ -8,6 +8,8 @@
   <meta name="description" content="the description goes here">
   <meta name="author" content="Volano">
 
+<link href="/assets/scaffolds.css?body=1" media="all" rel="stylesheet" />
+
   <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
 
   <!--[if lt IE 9]>
@@ -16,11 +18,19 @@
 </head>
 
 <body>
+<div style="width:45%;float:left">
+  <h2>Artists</h2>
+  <ol data-bind="foreach:data">
+    <li data-bind="text:name"></li>
+  </ol>
+</div>
 
-<h2>Artists</h2>
-<ol data-bind="foreach:data">
-  <li data-bind="text:name"></li>
-</ol>
+<div style="width:45%;float:left">
+  <h2>Edit</h2>
+  <form>
+    <input type="text" id="name" name="name">
+  </form>
+</div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/js/knockout-2.3.0.js"></script>
