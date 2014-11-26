@@ -1,9 +1,8 @@
-<h1>Listing media_types</h1>
+<h1>Listing Media Types</h1>
 
-<table>
+<table class="table table-striped table-hover">  
   <thead>
     <tr>
-      <th>Invoice</th>
       <th>Name</th>
       <th></th>
       <th></th>
@@ -14,11 +13,10 @@
   <tbody>
     <% @media_types.each do |media_type| %>
       <tr>
-        <td><%= media_type.invoice_id %></td>
         <td><%= media_type.name %></td>
-        <td><%= link_to 'Show', media_type %></td>
-        <td><%= link_to 'Edit', edit_media_type_path(media_type) %></td>
-        <td><%= link_to 'Destroy', media_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', media_type, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_media_type_path(media_type), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', media_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

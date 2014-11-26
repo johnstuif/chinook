@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
+  <strong>Name:</strong>
+  <%= @customer.full_name %>
 </p>
 
 <p>
@@ -62,3 +57,13 @@
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
+<hr>
+<h2>Invoices</h2>
+<ol>
+<% @customer.invoices.each do |invoice| %>
+
+  <li><%= invoice.invoice_date.strftime("%m/%d/%y") %> - <%= link_to invoice.id, invoice_path(:id=>invoice.id) %> - <%= number_to_currency(invoice.total) %></li>
+
+<% end %>
+</ol>
+

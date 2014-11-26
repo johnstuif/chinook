@@ -2,12 +2,12 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @invoice.customer_id %>
+  <%= @invoice.customer.full_name %>
 </p>
 
 <p>
   <strong>Invoice date:</strong>
-  <%= @invoice.invoice_date %>
+  <%= @invoice.invoice_date.strftime("%m/%d/%y") %>
 </p>
 
 <p>
@@ -39,6 +39,16 @@
   <strong>Total:</strong>
   <%= @invoice.total %>
 </p>
+
+<hr>
+
+<h2>Invoice Lines</h2>
+
+<ol>
+<% @invoice.invoice_lines.each do |line| %>
+  <li><%= link_to line.track.name, track_path(:id=>line.track_id) %> by <%= line.track.album.artist.name %> - <%= line.unit_price %></li>
+<% end %>
+</ol>
 
 <%= link_to 'Edit', edit_invoice_path(@invoice) %> |
 <%= link_to 'Back', invoices_path %>

@@ -4,7 +4,8 @@ class InvoiceLinesController < ApplicationController
   # GET /invoice_lines
   # GET /invoice_lines.json
   def index
-    @invoice_lines = InvoiceLine.all
+    #@invoice_lines = InvoiceLine.all
+    @invoice_lines = InvoiceLine.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /invoice_lines/1

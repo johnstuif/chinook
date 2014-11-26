@@ -1,14 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @employee.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @employee.last_name %>
-</p>
+<h1><%= @employee.full_name %></h1>
 
 <p>
   <strong>Title:</strong>
@@ -17,7 +9,11 @@
 
 <p>
   <strong>Reports to:</strong>
-  <%= @employee.reports_to %>
+  <% if @employee.reports_to %>
+    <%= link_to @employee.manager.full_name, employee_path(:id=>@employee.reports_to) %>
+  <% else %>
+     ---
+  <% end %>
 </p>
 
 <p>

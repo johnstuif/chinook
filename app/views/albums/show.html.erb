@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @album.title %>
-</p>
+<h1><%= @album.title %></h1>
 
-<p>
-  <strong>Artist:</strong>
-  <%= @album.artist_id %>
-</p>
+<h2>- <%= @album.artist.name %></h2>
 
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+<%= link_to 'Edit', edit_album_path(@album), class: "btn btn-warning" %> 
+<%= link_to 'Back', albums_path, class: "btn btn-primary" %>
+<hr>
+<h2>Tracks</h2>
+  <ol>
+  <% @album.tracks.each do |track| %>
+    <li><%= link_to track.name, track_path(:id=>track.id) %></li>
+  <% end %>
+  </ol>

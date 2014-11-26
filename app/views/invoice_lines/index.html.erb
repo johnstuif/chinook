@@ -1,6 +1,6 @@
-<h1>Listing invoice_lines</h1>
+<h1>Listing Invoice Lines</h1>
 
-<table>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Invoice</th>
@@ -16,17 +16,19 @@
   <tbody>
     <% @invoice_lines.each do |invoice_line| %>
       <tr>
-        <td><%= invoice_line.invoice_id %></td>
-        <td><%= invoice_line.track_id %></td>
+        <td><%= link_to invoice_line.invoice_id, invoice_path(:id=>invoice_line.invoice_id) %></td>
+        <td><%= invoice_line.track.name %> - <%= invoice_line.track.artist.name %></td>
         <td><%= invoice_line.unit_price %></td>
         <td><%= invoice_line.quantity %></td>
-        <td><%= link_to 'Show', invoice_line %></td>
-        <td><%= link_to 'Edit', edit_invoice_line_path(invoice_line) %></td>
-        <td><%= link_to 'Destroy', invoice_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', invoice_line, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_invoice_line_path(invoice_line), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', invoice_line, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @tracks %>
 
 <br>
 

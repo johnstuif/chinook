@@ -1,19 +1,14 @@
-<h1>Listing employees</h1>
+<h1>Listing Employees</h1>
 
-<table>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
+      <th>Name</th>
       <th>Title</th>
       <th>Reports to</th>
       <th>Birthdate</th>
       <th>Hiredate</th>
       <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Country</th>
-      <th>Postal code</th>
       <th>Phone</th>
       <th>Fax</th>
       <th>Email</th>
@@ -26,23 +21,24 @@
   <tbody>
     <% @employees.each do |employee| %>
       <tr>
-        <td><%= employee.first_name %></td>
-        <td><%= employee.last_name %></td>
+        <td><%= employee.full_name %></td>
         <td><%= employee.title %></td>
-        <td><%= employee.reports_to %></td>
-        <td><%= employee.birthdate %></td>
-        <td><%= employee.hiredate %></td>
-        <td><%= employee.address %></td>
-        <td><%= employee.city %></td>
-        <td><%= employee.state %></td>
-        <td><%= employee.country %></td>
-        <td><%= employee.postal_code %></td>
+        <td><% if employee.reports_to %>
+                 <%= link_to employee.manager.full_name, employee_path(:id=>employee.reports_to) %>
+            <% else %>
+                  ---
+            <% end %>
+        </td>
+        <td><%= employee.birthdate.strftime("%m/%d/%y") %></td>
+        <td><%= employee.hiredate.strftime("%m/%d/%y") %></td>
+        <td><%= employee.address %><br> 
+            <%= employee.city %>, <%= employee.state %> <%= employee.country %> <%= employee.postal_code %></td>
         <td><%= employee.phone %></td>
         <td><%= employee.fax %></td>
         <td><%= employee.email %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', employee, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

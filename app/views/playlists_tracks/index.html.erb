@@ -1,6 +1,6 @@
-<h1>Listing playlists_tracks</h1>
+<h1>Listing Playlist Tracks</h1>
 
-<table>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Playlist</th>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= playlists_track.playlist_id %></td>
         <td><%= playlists_track.track_id %></td>
-        <td><%= link_to 'Show', playlists_track %></td>
-        <td><%= link_to 'Edit', edit_playlists_track_path(playlists_track) %></td>
-        <td><%= link_to 'Destroy', playlists_track, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', playlists_track, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_playlists_track_path(playlists_track), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', playlists_track, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

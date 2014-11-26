@@ -6,4 +6,10 @@ class Employee < ActiveRecord::Base
 
   belongs_to :manager,  class_name: "Employee",
                         foreign_key: "reports_to"
+
+
+  def full_name
+      self.first_name + " " + self.last_name
+  end
+
 end

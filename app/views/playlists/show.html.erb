@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Playlist Name:</strong>
   <%= @playlist.name %>
 </p>
+
+<ol>
+<% @playlist.tracks.each do |track| %>
+
+<li><%= link_to track.name, track_path(:id=>track.id) %> by <%= link_to track.artist.name, artist_path(:id=>track.album.artist_id) %></li>
+
+<% end %>
+</ol>
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>

@@ -1,4 +1,6 @@
 Chinook::Application.routes.draw do
+  get 'dashboard/index'
+
   resources :tracks
 
   resources :playlists_tracks
@@ -25,7 +27,7 @@ Chinook::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

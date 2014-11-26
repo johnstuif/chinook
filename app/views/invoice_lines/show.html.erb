@@ -2,12 +2,12 @@
 
 <p>
   <strong>Invoice:</strong>
-  <%= @invoice_line.invoice_id %>
+  <%= link_to @invoice_line.invoice_id, invoice_path(:id=>@invoice_line.invoice_id) %>
 </p>
 
 <p>
   <strong>Track:</strong>
-  <%= @invoice_line.track_id %>
+  <%= @invoice_line.track.name %> - <%= @invoice_line.track.artist.name %>
 </p>
 
 <p>

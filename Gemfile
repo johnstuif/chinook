@@ -1,13 +1,14 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.7'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+# Use SCSS OR LESS for stylesheets
+gem 'sass-rails', '~> 4.0.4'
+#gem 'less-rails', '~> 2.5.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -16,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -25,7 +26,13 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.2.4'
+
+gem 'will_paginate', '~> 3.0.7'
+
+gem 'devise', '~> 3.4.1'
+
+gem 'cancancan', '~> 1.9.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

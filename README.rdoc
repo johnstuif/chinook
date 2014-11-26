@@ -1,15 +1,19 @@
 == README
 
-I've created this Rails 4 (Ruby 2.0.0p247) app using the Chinook database (chinookdatabase.codeplex.com). 
+I've created this Rails 4.1.7 (Ruby 2.1.1p76) app using the Chinook database (chinookdatabase.codeplex.com). 
 
 The migration and seed files will get you up and running.
 
 == PURPOSE
 The main goal of this project is to use it as a jumping off point to learn front-end frameworks, i.e. Knockout and Angular and become more famailiar with Rails overall.
 
-All the MVC code was generated from scaffolds.
+Most of the MVC code was generated from scaffolds.
+
+=== Front-end
+I'm using the Bootstrap CDN w/ the default skin.
 
 == TODOs
 
 * Add data entry validations
 * Create tests
+* Update the API's to pull in child data (done for albums)
